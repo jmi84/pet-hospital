@@ -12,14 +12,15 @@
 
     <?php
 
+      // Database connection
       $user = 'root';
       $password = 'root';
       $db = 'pet_hospital';
       $host = 'localhost';
       $port = 8889;
 
-      $link  = mysqli_init();
-      $success =  mysqli_real_connect(
+      $link = mysqli_init();
+      $connection =  mysqli_real_connect(
         $link,
         $host,
         $user,
@@ -28,15 +29,12 @@
         $port
       );
 
+      // Main header
       echo '<h1>ENTER NEW PET RECORD</h1>';
-
-      // $hospital_name = "Hospital: ".htmlspecialchars($_POST['hospital_name']);
-      // $pet_name = "Pet Name: ".htmlspecialchars($_POST['pet_name']);
-      // $owner_name = "Owner Name: ".htmlspecialchars($_POST['owner_name']);
-      // $malady = "Reason for Visit: ".htmlspecialchars($_POST['maladies']);
 
     ?>
 
+    <!-- The form -->
     <form action ="" method ="POST">
       <input type="text" name="hospital_name" placeholder="Hospital" /><br>
       <input type="text" name="pet_name" placeholder="Pet Name"/><br>
@@ -48,19 +46,43 @@
 
     <?php
 
-      // displaying all Animal records on page
+      // Displaying all Animal records in a table
       $sql = "SELECT * FROM Animals";
+
+      echo "<table border='1'>
+      <tr>
+      <th>ID</th>
+      <th>Pet Name</th>
+      <th>Hospital</th>
+      <th>Owner</th>
+      <th>Malady</th>
+      </tr>
+      ";
+
       if ($result = $link->query($sql)) {
-        printf("There are currently %d pets in the database: \n", $result->num_rows);
-        echo '<pre>';
-        print_r($result->fetch_all(MYSQLI_ASSOC));
-        echo '</pre>';
-        $result->close();
+
+        printf("There are currently %d pets in the database: ", $result->num_rows);
+
+        while($row = $result->fetch_assoc()) {
+
+          echo "<tr>";
+          echo "<td>" . $row["id"] . "</td>";
+          echo "<td>" . $row["name"] . "</td>";
+          echo "<td>" . $row["hospital_id"] . "</td>";
+          echo "<td>" . $row["owner_id"] . "</td>";
+          echo "<td>" . $row["malady_id"] . "</td>";
+
+        }
+
+        echo "</table>";
+
+      } else {
+          echo "0 results";
       }
 
-    ?>
+      $connection->close();
 
-<!-- note to self: make separate page for GET -->
+    ?>
 
   </body>
 </html>
