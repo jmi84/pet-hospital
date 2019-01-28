@@ -30,16 +30,16 @@
       );
 
       // Main header
-      echo '<h1>ENTER NEW PET RECORD</h1>';
+      echo '<h1>ADD NEW PET RECORD</h1>';
 
     ?>
 
     <!-- The form -->
-    <form action ="" method ="POST">
-      <input type="text" name="hospital_name" placeholder="Hospital" /><br>
-      <input type="text" name="pet_name" placeholder="Pet Name"/><br>
-      <input type="text" name="owner_name" placeholder="Owner Name"/><br>
-      <input type="text" name="malady" placeholder="Malady" /><br>
+    <form action ="insert.php" method ="POST">
+      <input type="text" name="pet_name" placeholder="Pet's Name" id="petname" /><br>
+      <input type="text" name="hospital_name" placeholder="Hospital" id="hospitalname" /><br>
+      <input type="text" name="owner_name" placeholder="Owner's Name" id="ownername" /><br>
+      <input type="text" name="malady" placeholder="Malady" id="malady" /><br>
       <button type ="submit">Submit</button>
     </form>
     <br>
