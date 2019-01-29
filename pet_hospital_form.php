@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>New Pets</title>
+    <link rel="stylesheet" href="style.php" media="screen">
   </head>
 
   <body>
@@ -38,6 +39,7 @@
     <form action ="insert.php" method ="POST">
       <input type="text" name="pet_name" placeholder="Pet's Name" id="petname" /><br>
       <input type="text" name="hospital_name" placeholder="Hospital" id="hospitalname" /><br>
+      <input type="text" name="hospital_location" placeholder="Hospital Location" id="hospitallocation" /><br>
       <input type="text" name="owner_name" placeholder="Owner's Name" id="ownername" /><br>
       <input type="text" name="malady" placeholder="Malady" id="malady" /><br>
       <button type ="submit">Submit</button>
@@ -62,6 +64,7 @@
       if ($result = $link->query($sql)) {
 
         printf("There are currently %d pets in the database: ", $result->num_rows);
+
 
         while($row = $result->fetch_assoc()) {
 
