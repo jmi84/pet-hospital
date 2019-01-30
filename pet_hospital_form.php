@@ -48,15 +48,17 @@
 
     <?php
 
-      // Displaying all Animal records in a table
-      $sql = "SELECT * FROM Animals";
+      // // Displaying all Animal records in a table
+      // $sql = "SELECT * FROM Animals";
+
+      $sql = "SELECT Animals.name AS animal_name, Hospitals.name AS hospital_name, Hospitals.location AS hospital_location, Owners.name AS owner_name, Maladies.name AS malady_name FROM Animals LEFT JOIN Hospitals ON Animals.hospital_id = Hospitals.id LEFT JOIN Owners ON Animals.owner_id = Owners.id LEFT JOIN Maladies ON Animals.malady_id = Maladies.id GROUP BY Animals.id";
 
       echo "<table border='1'>
       <tr>
-      <th>ID</th>
       <th>Pet Name</th>
-      <th>Hospital</th>
-      <th>Owner</th>
+      <th>Hospital Name</th>
+      <th>Hospital Location</th>
+      <th>Owner Name</th>
       <th>Malady</th>
       </tr>
       ";
@@ -69,11 +71,11 @@
         while($row = $result->fetch_assoc()) {
 
           echo "<tr>";
-          echo "<td>" . $row["id"] . "</td>";
-          echo "<td>" . $row["name"] . "</td>";
-          echo "<td>" . $row["hospital_id"] . "</td>";
-          echo "<td>" . $row["owner_id"] . "</td>";
-          echo "<td>" . $row["malady_id"] . "</td>";
+          echo "<td>" . $row["animal_name"] . "</td>";
+          echo "<td>" . $row["hospital_name"] . "</td>";
+          echo "<td>" . $row["hospital_location"] . "</td>";
+          echo "<td>" . $row["owner_name"] . "</td>";
+          echo "<td>" . $row["malady_name"] . "</td>";
 
         }
 

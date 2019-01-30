@@ -29,7 +29,7 @@ $sql2 = "INSERT INTO Owners (name) VALUES ('$owner_name') SET ($last_owner_id = 
 $sql3 = "INSERT INTO Maladies (name) VALUES ('$malady') SET ($last_malady_id = mysqli_insert_id())";
 
 // Using $pet_name and the last_insert_ids from above, insert values into the Animals table
-$sql4 = "INSERT INTO Animals (name, hospital_id, owner_id, malady_id) VALUES ('$pet_name', '$last_hospital_id', '$last_owner_id', '$last_malady_id')";
+$sql4 = "INSERT INTO Animals (name, hospital_id, owner_id, malady_id) VALUES ('$pet_name')";
 
 // Do the thing
 mysql_query($sql1, $connection);
